@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% block content %}
+<body class="bg-secondary">
+
+
+  <div class="content-detail  d-md-flex align-items-center" style="width: 100%; height: 100vh; margin-top: 100px;">
+
+       <center><img alt="{{ book.title }}" class="mx-md-4" src="{{ book.image.url }}" style="width: 300px;   border-radius: 1em; margin-bottom: 1em; " /></center>
+              <div class="text-detail">
+                <p><span class="bg-detail">Judul </span><span class="descriptiton-text">{{ book.title }}</span> </p>
+                <p><span class="bg-detail">Author </span><span class="descriptiton-text">{{ book.author }}</span></p>
+                <p><span class="bg-detail">Release </span><span class="descriptiton-text">{{ book.release_date|date:"d-m-Y"}}</span></p><br>
+                <p><span class="bg-detail">Kode Manga </span><span class="descriptiton-text"> {{ book.isbn }}</span> </p>
+                <p><span class="bg-detail">Halaman </span><span class="descriptiton-text">{{ book.page_count }}</span></p>
+                <p><span class="bg-detail">Kategori </span><span class="descriptiton-text">{{ book.category.name }}</span></p>
+                <p><span class="bg-detail">Sinopsis </span><br><span class="descriptiton-text">{{ book.description }}</span> <br/></p>
+              </div>
+              <a href="#" onclick="history.back()" class=" text-dark text-info-back"><i class="bi bi-arrow-left"></i>Back</a>
+            </div>
+
+          </body>
+{% endblock content %}

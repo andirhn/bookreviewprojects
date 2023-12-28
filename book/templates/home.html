@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+      <br/>
+
+      <div class="category-home">
+      <span>Kategori:</span><br><br>
+      <a class="btn btn-primary hover-home rounded mx-4 hover" href="{% url 'home' %}">Semua</a>
+        {% for category in categories %}
+        <a class="mx-2 ms-4 btn btn-primary hover-home rounded " href="?category_id={{ category.id }}">{{ category.name }}</a>
+        {% endfor %}
+      </div>
+
+          <form  action="" method="GET">
+            <div class="my-3">
+              <label for="cariBuku " >Cari Komik / Manhwa / Manga :</label>
+              <input id="cariBuku" class="form-control focus-transition" type="text" name="judul" placeholder="Cari"/>
+            </div>
+              <button class="btn btn-primary mb-2" type="submit">Search</button>
+              {% if searchJudul %}
+                {% load static %}
+                  <span class="d-block text-center mb-4">Pencarian Untuk {{ searchJudul }} <img src="{% static 'images/search.gif' %}"  alt="Animated Search Book" width="40" class="d-inline-block align-text-top"></span>
+              {% endif %}
+          </form>
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for book in books %}
+            <div class="col">
+              <div class="card bg-dark ">
+                <div class="card-position-home">
+                  <a href="{% url 'detail' book.id %}" class="card-img">
+                    <img alt="Gambar {{ book.title }}" class="image-home" src="{{ book.image.url }}" />
+                  </a>
+                </div>
+                  <div class="card-body text-light">
+                  <h5 class="card-title fw-bold">{{ book.title }}</h5>
+                <a class="btn btn-outline-primary " href="{% url 'detail' book.id %}">Lihat</a>
+                <p class="child mt-4">{{ book.release_date|date:"d-m-Y" }}</p>
+                  </div>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+
+
+
+{% endblock content %}
